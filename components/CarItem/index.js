@@ -3,20 +3,22 @@ import { View, Text, ImageBackground } from "react-native";
 import styles from "./styles";
 import StyledButton from "../StyledButton";
 
-export default function CardItem() {
+export default function CardItem(props) {
+  const { name, tagline, taglineCTA, image } = props.car;
+
   return (
     <View style={styles.cardContainer}>
-      <ImageBackground
-        source={require("../../assets/images/ModelX.jpeg")}
-        style={styles.image}
-      />
+      <ImageBackground source={image} style={styles.image} />
       <View style={styles.titles}>
-        <Text style={styles.title}>Model S</Text>
-        <Text style={styles.subtitle}>Starting at €69k</Text>
+        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.subtitle}>
+          {tagline} <Text style={styles.subtitleCTA}>{taglineCTA}</Text>
+        </Text>
       </View>
-
-      <StyledButton text='Custom Order' type='dark' />
-      <StyledButton text='Existing Inventory' type='light' />
+      <View style={styles.buttonContainer}>
+        <StyledButton text='Custom Order' type='dark' />
+        <StyledButton text='Existing Inventory' type='light' />
+      </View>
     </View>
   );
 }
